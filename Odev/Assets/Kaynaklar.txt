@@ -1,0 +1,3 @@
+Ball, Player1, Player2: https://assetstore.unity.com/packages/3d/low-polygon-soccer-ball-84382
+Music: https://tallbeard.itch.io/music-loop-bundle/download/eyJpZCI6MjQ4OTQsImV4cGlyZXMiOjE2NzQ3NTM2NTZ9.8wLycRh3JK0Y1ZoNM%2bcIpdWwCLY%3d
+HitVoice: https://filmcow.itch.io/filmcow-sfx

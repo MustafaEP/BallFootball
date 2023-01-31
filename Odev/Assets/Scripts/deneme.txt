@@ -1,0 +1,105 @@
+
+        if(collision.collider.tag == "Player1")
+        {
+            
+            _angle = Vector3.Angle(_rb.transform.position - player1.transform.position, Vector3.forward);
+            
+            float sin = Mathf.Sin((_angle/180) * Mathf.PI);
+            float cos = Mathf.Cos((_angle/180) * Mathf.PI);
+            _angle = _angle % 180;
+            if(_hitWall == false)
+            {
+
+                if((_inComingVelocity1.x < 0 && _rb.velocity.x > 0) || (_inComingVelocity1.x > 0 && _rb.velocity.x < 0))
+                {
+                    _rb.velocity = -2f * _rb.velocity;
+                }
+                else if(_inComingVelocity1.x == 0 && _inComingVelocity1.z == 0)
+                {
+                    _rb.velocity = -2f * _rb.velocity;
+                }
+                
+                _rb.AddForce(new Vector3(
+                    _inComingVelocity1.x * sin + _inComingVelocity1.z * sin 
+                    , 0, 
+                    _inComingVelocity1.z * cos + _inComingVelocity1.x * cos) * 
+                    _ballForce
+                );
+
+                _hitWall = false;
+
+            }
+            else{
+                
+
+                if((_inComingPosition1.x < _rb.position.x) && (_inComingVelocity1.x < 0) && (_rb.velocity.x < 0))
+                {   
+                    _rb.velocity = new Vector3(0, 0, 0);
+                    _rb.AddForce(new Vector3(5f, 2f, 0));
+                }
+                else if((_inComingPosition2.x > _rb.position.x) && (_inComingVelocity2.x > 0) && (_rb.velocity.x > 0))
+                {   
+                    _rb.velocity = new Vector3(0, 0, 0);
+                    _rb.AddForce(new Vector3(-5f, 2f, 0));
+                }
+                else{
+_rb.AddForce(new Vector3(
+                    _inComingVelocity1.x * sin + _inComingVelocity1.z * sin 
+                    , 0, 
+                    _inComingVelocity1.z * cos + _inComingVelocity1.x * cos) * 
+                    _ballForce
+                );                    _hitWall = false;
+                }
+            }
+            
+        Debug.Log(_angle);
+           
+
+        }
+        if(collision.collider.tag == "Player2")
+        {   
+            
+            _angle = Vector3.Angle(_rb.transform.position - player2.transform.position, Vector3.forward);
+            _angle = _angle % 180;
+            float sin = Mathf.Sin((_angle/180) * Mathf.PI);
+            float cos = Mathf.Cos((_angle/180) * Mathf.PI);
+
+            if(_hitWall == false)
+            {
+                
+                if((_inComingVelocity2.x < 0 && _rb.velocity.x > 0) || (_inComingVelocity2.x > 0 && _rb.velocity.x < 0))
+                {
+                    _rb.velocity = -2f * _rb.velocity;
+                }
+                else if(_inComingVelocity2.x == 0 && _inComingVelocity2.z == 0)
+                {
+                    _rb.velocity = -2f * _rb.velocity;
+                }
+ 
+                _rb.AddForce(new Vector3(_inComingVelocity2.x * sin + _inComingVelocity2.z * cos, 0, _inComingVelocity2.z * cos + _inComingVelocity2.x * sin) * _ballForce);
+                _hitWall = false;
+                
+            }
+            else{
+
+                if((_inComingPosition2.x < _rb.position.x) && (_inComingVelocity2.x < 0) && (_rb.velocity.x < 0))
+                {   
+                    _rb.velocity = new Vector3(0, 0, 0);
+                    _rb.AddForce(new Vector3(5f, 2f, 0));
+                }
+                else if((_inComingPosition2.x > _rb.position.x) && (_inComingVelocity2.x > 0) && (_rb.velocity.x > 0))
+                {   
+                    _rb.velocity = new Vector3(0, 0, 0);
+                    _rb.AddForce(new Vector3(-5f, 2f, 0));
+                }
+                else{
+                _rb.AddForce(new Vector3(_inComingVelocity2.x * sin + _inComingVelocity2.z * cos, 0, _inComingVelocity2.z * cos + _inComingVelocity2.x * sin) * _ballForce);
+                    _hitWall = false;
+                }
+   
+            }
+            
+            
+        }
+
+        
